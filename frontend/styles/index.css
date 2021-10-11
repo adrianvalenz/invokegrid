@@ -1,0 +1,109 @@
+:root {
+  --body-background: #fafafa;
+  --body-color: #444;  
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--body-background);
+  color: var(--body-color);
+  font-family: sans-serif;
+}
+
+h1, nav, footer {
+  text-align: center;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
+  width: 100%;
+}
+
+:root {
+  --default-grid-cols: 12;
+  --default-grid-gap: 1rem;
+  --default-flex-gap: 0;
+}
+
+[class*="grid"] {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, var(--default-grid-cols)), minmax(0, 1fr));
+  grid-gap: var(--gap, var(--default-grid-gap));
+}
+
+[class*="grid"] > * {
+  grid-column: auto/span var(--col, auto);
+  grid-column-start: var(--col-start);
+}
+
+[class*="flex"] {
+  display: flex;
+  flex-wrap: var(--wrap, wrap);
+  gap: var(--flex-gap, var(--default-flex-gap));
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+}
+
+@media screen and (min-width: 60rem) {
+
+  [class*="grid"][class*="lg:grid"] {
+    grid-template-columns: repeat(var(--grid-cols-lg, var(--grid-cols, var(--default-grid-cols))), minmax(0, 1fr));
+    grid-gap: var(--gap-lg, var(--gap, var(--default-gap)));
+  }
+
+  [class*="grid"][class*="lg:grid"] > * {
+    grid-column: auto/span var(--col-lg, var(--col, auto));
+    grid-column-start: var(--col-start-lg, var(--col-start));
+  }
+
+  [class*="flex"][class*="lg:flex"] {
+    flex-wrap: var(--wrap-lg, var(--wrap, wrap));
+    gap: var(--flex-gap-lg, var(--flex-gap, var(--default-flex-gap)));
+    justify-content: var(--justify-content-lg, var(--justify-content));
+    align-items: var(--align-items-lg, var(--align-items));
+  }
+}
+
+/* custom site */
+
+[class^="boxes"] > div {
+  background-color: purple;
+  color: pink;
+  font-weight: 700;
+  padding: 1rem;
+  text-align: center;
+}
+
+.boxes-grid-1 > div {
+  border-radius: .5rem;
+}
+
+.boxes-grid-2 > div {
+  background-color: green;
+  color: white;
+}
+
+.yellow-box {
+  background-color: yellow;
+  border: 2px solid green;
+  height: 600px;
+  width: 100%;
+}
+
+.cyan-box {
+  background-color: cyan;
+  border: 2px solid green;
+  height: 600px;
+  width: 100%;
+}

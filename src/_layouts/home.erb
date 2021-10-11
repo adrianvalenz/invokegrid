@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<h1>Home Page</h1>
+
+<%= yield %>
+
+<section class="yellow-box">
+  <div class="boxes-grid-1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+  </div>
+</section>
+<hr>
+<section class="yellow-box">
+  <div class="boxes-grid-2 lg:grid" style="--grid-cols: 3; --grid-cols-lg: 6; --gap-lg: .5rem;">
+    <div style="--col-lg: 4; --col-start: 2;">1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div style="--col-start: 2;">5</div>
+    <div>6</div>
+  </div>
+</section>
+
+<hr>
+
+<style>
+.website .menu li {
+  list-style-type: none;
+  background-color: yellow;
+}
+
+.site-header {
+  border: 2px solid red;
+  padding: 1rem 2rem;
+}
+</style>
+
+<section class="cyan-box website">
+  <header class="site-header grid container">
+    <div class="logo" style="--col: 3;">logo</div>
+    <nav class="menu flex lg:flex" style="--justify-content: flex-end; --flex-gap: 1rem; --col: 9; --align-items: center;">
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+    </nav>
+  </header>
+</section>

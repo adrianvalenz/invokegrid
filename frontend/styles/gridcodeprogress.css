@@ -1,0 +1,155 @@
+/*
+
+Properties and their parameters
+
+- Grid Parent
+  display: grid | inline-grid;
+  grid-gap: <integer>;
+  grid-template-columns: 1fr 1fr | minmax(10px, 1fr) 3fr | repeat(5, 1fr) | 50px auto 100px 1fr;
+  grid-template-rows: min-content 1fr min-content | 100px 1fr max-content;
+  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+  justify-items: start | end | center | stretch;
+  align-content: start | end | center | stretch | space-around | space-between | space-evenly;
+  align-items: start | end | center | stretch;
+
+- Grid Child
+  grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+  grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+  justify-self: start | end | center | stretch;
+  align-self: start | end | center | stretch;
+
+*/
+
+[class$="-container"] {
+  --default-max-width: 60rem;
+  margin: 0 auto;
+  max-width: var(--max-width, var(--default-max-width));
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  width: 100%;
+}
+
+/* Properties for the Parent (Grid Container) */
+[class$="-grid"] {
+  --default-cols: 12;
+  --default-gap: 1rem;
+  grid-gap: var(--gap, var(--default-gap));
+  grid-template-columns: repeat(var(--cols, var(--default-cols)), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows, none)), minmax(0, 1fr));
+  justify-content: var(--justify-content);
+  justify-items: var(--justify-items);
+  align-content: var(--align-content);
+  align-items: var(--align-items);
+}
+
+/* Properties for the Children (Grid Items) */
+[class$="-grid"] > * {
+  grid-column: var(--col, auto, 1 / -1);
+  grid-row: var(--row, auto);
+  justify-self: var(--justify-self);
+  align-self: var(--align-self);
+}
+
+/* Start media queries */
+@media screen and (min-width: 60rem) {
+  
+  /* Properties for the Parent (Grid Container) */
+  [class$="-grid"] {
+    grid-template-columns: repeat(var(--cols-lg, var(--default-cols)), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--rows-lg, none), minmax(0, 1fr));
+    justify-content: var(--justify-content-lg, var(--justify-content));
+    justify-items: var(--justify-items-lg, var(--justify-items));
+    align-content: var(--align-content-lg, var(--align-content));
+    align-items: var(--align-items-lg, var(--align-items));
+  }
+
+  /* Properties for the Children (Grid Items) */
+  [class$="-grid"] > * {
+    grid-column: var(--col-lg, var(--col, auto));
+    grid-row: var(--row-lg, var(--row, auto));
+    justify-self: var(--justify-self-lg, var(--align-self));
+    align-self: var(--align-self-lg, var(--align-self));
+  }
+}
+
+
+/*
+
+Properties and their parameters
+
+- Flex Parent
+  display: flex | inline-flex;
+  flex-flow: row | column + nowrap | wrap | wrap-reverse; default: row nowrap
+  flex-direction: row | column | row-reverse | column-reverse; default: row
+  flex-wrap: nowrap | wrap | wrap-reverse; default: nowrap
+  gap: <integer>;. default: 0 or order of html source
+  justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right + safe | unsafe; 
+  align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | start | end | baseline | first baseline | last baseline + safe | unsafe;
+  align-items: stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end | + safe | unsafe; 
+
+- Flex Child
+  order: <integer>; default: 0
+  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]; Shorthand for flex-grow, flex-shrink, flex-basis. 2nd and 3rd parameters are optional.
+  align-self: auto | flex-start | center | baseline | stretch;
+
+*/
+
+/* Properties for the Parent (flex container) */
+[class^="flex-"] {
+  flex-flow: var(--flex-flow);
+  flex-direction: var(--flex-direction, row);
+  flex-wrap: var(--flex-wrap, wrap);
+  gap: var(--gap); 
+  justify-content: var(--justify-content);
+  align-content: var(--align-content);
+  align-items: var(--align-items, var(--center));
+}
+
+/* Properties for the Children (flex items)*/
+[class^="flex-"] > * {
+  order: var(--order);
+  flex: var(--flex);
+  align-self: var(--align-self);
+}
+
+
+/* Start media queries */
+@media screen and (min-width: 60rem) {
+
+  /* Properties for the Parent (flex container) */
+  [class^="flex-"] {
+    flex-flow: var(--flex-flow-lg, var(--flex-flow));
+    gap: var(--gap-lg, var(--gap));
+    justify-content: var(--justify-content-lg, var(--justify-content));
+    align-content: var(--align-content-lg, var(--align-content));
+    align-items: var(--align-items-lg, var(--align-items));
+  }
+
+  /* Properties for the Children (flex items)*/
+  [class^="flex-"] > * {
+    order: var(--order-lg, var(--order));
+    flex: var(--flex-lg, var(--flex));
+    align-self: var(--align-self-lg, var(--align-self));
+  }
+}
+
+
+@media screen and (min-width: 0rem) and (max-width: 60rem) {
+  [class^="flex-"] {
+    display: flex;
+  }
+  
+  [class$="-grid"] {
+    display: grid;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  [class^="flex-"].lg {
+    display: flex;
+  }
+  
+  [class$="-grid"].lg {
+    display: grid;
+  }
+}
